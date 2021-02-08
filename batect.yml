@@ -1,0 +1,25 @@
+containers:
+  build-env:
+    build_directory: .batect/build-env
+    volumes:
+      - local: <{batect.project_directory}/
+        container: /code
+        options: cached
+      - type: cache
+        name: go-cache
+        container: /go
+    working_directory: /code/
+    environment:
+      # With the image above, GOPATH defaults to /go, so we don't need to set it explicitly.
+      GOCACHE: /go/cache
+    enable_init_process: true
+    run_as_current_user:
+      enabled: true
+      home_directory: /home/container-user
+
+tasks:
+  build:
+    description: Build application
+    run:
+      container: build-env
+      command: make build

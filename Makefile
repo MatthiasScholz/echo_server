@@ -16,6 +16,9 @@ init-batect:
 uninstall-batect:
 	brew uninstall batect/batect/batect-zsh-completion
 
+batect-build:
+	./batect build
+
 ####################################
 # Interact: User Input with defaults
 ####################################
@@ -27,7 +30,7 @@ app_name:=echo
 #############
 # User helper
 #############
-docker:
+docker: batect-build
 	docker build --tag $(app_name) --build-arg app_name=$(app_name) .
 
 up: down docker
@@ -59,18 +62,15 @@ hadolint:
 init:
 	go mod init $(app_name)/m/v2
 
-# TODO make independent
-dependencies:
-	go get github.com/rs/cors
-
 build: cleanup
-	go build -o $(app_name)
+	go build -o $(app_name) cmd/echo/app.go
 
 run: build
 	./$(app_name)
 
 cleanup:
 	go clean
+	rm -f $(app_name)
 
 #########################
 # All MacOSX dependenices
