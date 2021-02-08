@@ -51,7 +51,7 @@ test:
 lint: conftest hadolint
 
 conftest:
-	conftest test --policy dockerfile-security.rego Dockerfile
+	conftest test --policy test/dockerfile-security.rego Dockerfile
 
 hadolint:
 	hadolint Dockerfile
