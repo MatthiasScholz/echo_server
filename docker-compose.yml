@@ -1,0 +1,8 @@
+version: '3'
+services:
+  echo:
+    build: .
+    ports:
+    - 18080-18180:8081
+    environment:
+      - APP_PORT=8081
