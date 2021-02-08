@@ -11,6 +11,18 @@ make down
 make logs
 ```
 
+## Features
+
+- golang
+- http server
+- CORS
+
+- Docker
+- Docker-compose
+
+- Open Policy Agent
+- Hadolint
+
 ## References
 
 -
