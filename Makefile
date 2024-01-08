@@ -22,7 +22,7 @@ batect-build:
 ####################################
 # Interact: User Input with defaults
 ####################################
-app_name:=echo
+app_name:=echo-server
 
 # Force rebuild
 .PHONY: dependencies build

@@ -1,6 +1,6 @@
 FROM alpine:3.12
 
-ARG app_name=echo
+ARG app_name=echo-server
 ENV app_name=${app_name}
 
 RUN apk --no-cache -U upgrade

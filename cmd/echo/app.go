@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"os"
 
@@ -34,8 +35,25 @@ func main() {
 }
 
 func HelloServer(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
 	url_path := r.URL.Path[1:]
+	url := r.URL
+	query := r.Form
+	header := r.Header
+	bodyBytes, _ := ioutil.ReadAll(r.Body)
+	body := string(bodyBytes)
+	redirect := r.Response
+	requestURI := r.RequestURI
+
 	fmt.Println("Someone opened:", url_path)
+	fmt.Println("URL:", url)
+	fmt.Println("Query parameters:", query)
+	fmt.Println("Header:", header)
+	fmt.Println("Body:", body)
+	fmt.Println("Redirect Response:", redirect)
+	fmt.Println("Request URI:", requestURI)
+
+	// Response
 	fmt.Fprintf(w, "Hello, %s!", url_path)
 }
 
